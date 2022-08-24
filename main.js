@@ -55,7 +55,14 @@ const validateCred = (array) => {
     //return false when numbers are invalid 
     //Do not mutate values of original array
 }
+// Test functions
+/*
+console.log('Test functions for validatedCred')
 validateCred(invalid1);
+console.log(validateCred(valid1)); // Should print true
+console.log(validateCred(invalid1)); // Should print false
+*/
+
 
 // Function to find invalid cards
 const findInvalidCards = (nestedArray) => {
@@ -70,9 +77,54 @@ const findInvalidCards = (nestedArray) => {
             continue;
         }
     }
-    console.log(incorrectCards)
+    return incorrectCards;
 }
-findInvalidCards(batch)
+// Test functions
+/*
+console.log('Test functions for findInvalidCards')
+findInvalidCards(batch);
+console.log(findInvalidCards([valid1, valid2, valid3, valid4, valid5]));// Shouldn't print anything
+console.log(findInvalidCards([invalid1, invalid2, invalid3, invalid4, invalid5])); // Should print all of the numbers
+*/
+
+
+function idInvalidCardCompanies(nestedArrayInvalid) {
+    // First digit of card associated with company
+    const companiesResponsible = [];
+    for  (const incorrectCardArray of nestedArrayInvalid) {
+        switch (incorrectCardArray[0]) {
+            case 3:
+                if (companiesResponsible.indexOf('Amex') === -1) {
+                    companiesResponsible.push('Amex');
+                }
+                break
+            case 4:
+                if (companiesResponsible.indexOf('Visa') === -1) {
+                    companiesResponsible.push('Visa');
+                }
+                break
+            case 5:
+                if (companiesResponsible.indexOf('Mastercard') === -1) {
+                    companiesResponsible.push('Mastercard');
+                }
+                break
+            case 6:
+                if (companiesResponsible.indexOf('Discover') === -1) {
+                    companiesResponsible.push('Discover');
+                }
+                break
+            default:
+                console.log('Company not found');
+        }
+    }
+    return companiesResponsible;
+    // return array of companies that have mailed out invalid cards
+}
+// Test functions
+console.log('Test function for idInvalidCardCompanies')
+//console.log(idInvalidCardCompanies([invalid1])); // Should print['visa']
+//console.log(idInvalidCardCompanies([invalid2])); // Should print ['mastercard']
+console.log(idInvalidCardCompanies(batch)); // Find out which companies have mailed out invalid cards
 
 
 
