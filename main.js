@@ -24,7 +24,38 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 
 // Add your functions below:
-
+const validateCred = (array) => {
+    let doubledArray = 0;
+    let j = 1
+    //return true when an array contains digits of a valid credit card number
+    //start frin farthest ruight digit and move to the left
+    for (let i = array.length - 1; i >= 0; i--) {
+        if (j % 2 == 0) {
+            let doubledValues = array[i] * 2;
+            if (doubledValues > 9) {
+                doubledValues = doubledValues - 9;
+                doubledArray = doubledArray + doubledValues;
+            }
+            else {
+                doubledArray = doubledArray + doubledValues
+            }
+        }
+        else {
+            doubledArray = doubledArray + array[i];
+        }
+        j++;
+    }
+    if (doubledArray % 10 === 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+    console.log(doubledArray)
+    //return false when numbers are invalid 
+    //Do not mutate values of original array
+}
+validateCred(valid1);
 
 
 
